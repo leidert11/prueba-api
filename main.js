@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const res = await fetch(API_URL);
         const data = await res.json();
 
-        tabla.innerHTML = "";
+        tabla.innerHTML= "";
         data.forEach((item) => {
             tabla.innerHTML +=
             `
@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     renderData();
     
-    formulario.addEventListener("submit", async (e) => {
+    formulario.addEventListener("submit", async(e) => {
         e.preventDefault();
         const formData = new FormData(formulario);
         const data = {
@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if(id){
             const res = await fetch(`${API_URL}/${id}`,{
                 method : "PUT",
-                headers: {"Content-type":"application/json"},
+                headers:{"Content-type":"application/json"},
                 body: JSON.stringify(data)
             });
             if(res.ok){
@@ -52,9 +52,9 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         } else{
             const res = await fetch(API_URL,{
-                method: "POST",
-                headers: {"Content-type":"application/json"},
-                body : JSON.stringify(data)
+                method:"POST",
+                headers:{"Content-type":"application/json"},
+                body :JSON.stringify(data)
             });
             if(res.ok){
                 console.log("registro creado");
@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    tabla.addEventListener("click", async (e) => {
+    tabla.addEventListener("click", async(e) => {
         if (e.target.classList.contains("editar")) {
             const id = e.target.getAttribute("data-id");
 
@@ -75,12 +75,12 @@ document.addEventListener("DOMContentLoaded", () => {
             formulario.caja.value = data.caja;
 
             formulario.querySelector("input[type='submit']").value = "Actualizar";
-            formulario.querySelector("input[type='submit']").setAttribute("data-id", id);
+            formulario.querySelector("input[type='submit']").setAttribute("data-id",id);
             isEditing = true; 
         }
     });
 
-    tabla.addEventListener("click", async (e) => {
+    tabla.addEventListener("click", async(e) => {
         if (e.target.classList.contains("eliminar")) {
             const id = e.target.getAttribute("data-id");
 
