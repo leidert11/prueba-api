@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const formulario = document.querySelector("form");
     const tabla = document.querySelector("#myData");
     const API_URL = "https://6509e17df6553137159c2ff5.mockapi.io/tabla";
-    let isEditing = false;
+    let isEditing = false;//esta variable servira mas adelante para editar el formulario
 
     async function renderData(){
         const res = await fetch(API_URL);
@@ -23,7 +23,25 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
     renderData();
-  
-
     
+    formulario.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const formData = new FormData(formulario);
+        const data = {
+            valor: formData.get("valor"),
+            caja: formData.get("caja"),
+        };
+        const res = await fetch(API_URL,{
+            method: "POST",
+            headers: {"Content-type":"application/json"},
+            body : JSON.stringify(data)
+        });
+        if(res.ok){
+            console.log("registro creado");
+            formulario.reset();
+            renderData();
+        }
+    });
+
+
 });
