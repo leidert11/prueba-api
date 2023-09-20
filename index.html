@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="main.js" type="module" defer></script>
+</head>
+<body>
+    <form action="">
+        <input type="number"pattern="[0-9]+" required name="valor" placeholder="ingrese el monto"><br>
+        <input type="radio" value="ingreso" checked="true" name="caja"><label for="ingreso">ingreso</label>
+        <input type="radio" value="egreso" name="caja"><label for="egreso">egreso</label><br>
+        <input type="submit" name="" id="" value="calcular">
+    </form>
+
+    <table border="solid">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>valor</th>
+                <th>tipo</th>
+            </tr>
+        </thead>
+        <tbody id="myData">
+
+        </tbody>
+    </table>
+</body>
+</html>
