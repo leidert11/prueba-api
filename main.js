@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const formulario = document.querySelector("form");
     const tabla = document.querySelector("#myData");
     const API_URL = "https://6509e17df6553137159c2ff5.mockapi.io/tabla";
-    let isEditing = false;//esta variable servira mas adelante para editar el formulario
+    let isEditing = false;
 
     async function renderData(){
         const res = await fetch(API_URL);
@@ -77,6 +77,21 @@ document.addEventListener("DOMContentLoaded", () => {
             formulario.querySelector("input[type='submit']").value = "Actualizar";
             formulario.querySelector("input[type='submit']").setAttribute("data-id", id);
             isEditing = true; 
+        }
+    });
+
+    tabla.addEventListener("click", async (e) => {
+        if (e.target.classList.contains("eliminar")) {
+            const id = e.target.getAttribute("data-id");
+
+            const response = await fetch(`${API_URL}/${id}`, {
+                method: "DELETE",
+            });
+
+            if (response.ok) {
+                console.log("registro eliminado .");
+                renderData();
+            }
         }
     });
 });
