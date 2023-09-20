@@ -31,17 +31,52 @@ document.addEventListener("DOMContentLoaded", () => {
             valor: formData.get("valor"),
             caja: formData.get("caja"),
         };
-        const res = await fetch(API_URL,{
-            method: "POST",
-            headers: {"Content-type":"application/json"},
-            body : JSON.stringify(data)
-        });
-        if(res.ok){
-            console.log("registro creado");
-            formulario.reset();
-            renderData();
+
+        const submitButton = formulario.querySelector("input[type='submit']");
+        const id = submitButton.getAttribute("data-id");
+
+        if (isEditing) { 
+            submitButton.value = "Calcular";
+            isEditing = false;
+        }
+        if(id){
+            const res = await fetch(`${API_URL}/${id}`,{
+                method : "PUT",
+                headers: {"Content-type":"application/json"},
+                body: JSON.stringify(data)
+            });
+            if(res.ok){
+                console.log("registro actualizado");
+                formulario.reset();
+                renderData();
+            }
+        } else{
+            const res = await fetch(API_URL,{
+                method: "POST",
+                headers: {"Content-type":"application/json"},
+                body : JSON.stringify(data)
+            });
+            if(res.ok){
+                console.log("registro creado");
+                formulario.reset();
+                renderData();
+            }
         }
     });
 
+    tabla.addEventListener("click", async (e) => {
+        if (e.target.classList.contains("editar")) {
+            const id = e.target.getAttribute("data-id");
 
+            const res = await fetch(`${API_URL}/${id}`);
+            const data = await res.json();
+
+            formulario.valor.value = data.valor;
+            formulario.caja.value = data.caja;
+
+            formulario.querySelector("input[type='submit']").value = "Actualizar";
+            formulario.querySelector("input[type='submit']").setAttribute("data-id", id);
+            isEditing = true; 
+        }
+    });
 });
