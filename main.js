@@ -18,8 +18,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 <td>${item.id}</td>
                 <td>${item.valor}</td>
                 <td>${item.caja}</td>
-                <td><button class="editar" data-id="${item.id}" >Editar</button></td>
-                <td><button class="eliminar" data-id="${item.id}" >Eliminar</button></td>
+                <td><button class="btn btn-primary editar" data-id="${item.id}" >Editar</button></td>
+                <td><button class="btn btn-danger eliminar" data-id="${item.id}" >Eliminar</button></td>
             </tr>
             `;
         });
