@@ -12,37 +12,42 @@
 <body>
     <div class="container mt-4">
         <h1 class="text-center">registro de ingresos</h1>
-        <form action="" class="form-inline mb-4">
-            <div class="form-group">
-                <label for="valor" class="mr-2 mb-2">Monto</label>
-                <input type="number" pattern="[0-9]+" required name="valor" placeholder="Ingrese el monto" class="form-control mr-2 mb-2" id="valor">
-                <div class="w-100"></div>
-                <input type="radio" value="ingreso" checked="true" name="caja" class="form-check-input mr-1 mb-2" id="ingreso">
-                <label for="ingreso" class="form-check-label mr-2 mb-2">Ingreso</label>
-                <input type="radio" value="egreso" name="caja" class="form-check-input mr-1 mb-2" id="egreso">
-                <label for="egreso" class="form-check-label mr-2 mb-2">Egreso</label>
+        <div class="row">
+            <div class="col-md-4 ml-0 mr-0">
+                <form action="" class="form-inline mb-4">
+                    <div class="form-group">
+                        <label for="valor" class="mr-2 mb-2">Monto</label>
+                        <input type="number" pattern="[0-9]+" required name="valor" placeholder="Ingrese el monto" class="form-control mr-2 mb-2" id="valor">
+                        <div class="w-100"></div>
+                        <input type="radio" value="ingreso" checked="true" name="caja" class="form-check-input mr-1 mb-2" id="ingreso">
+                        <label for="ingreso" class="form-check-label mr-2 mb-2">Ingreso</label>
+                        <input type="radio" value="egreso" name="caja" class="form-check-input mr-1 mb-2" id="egreso">
+                        <label for="egreso" class="form-check-label mr-2 mb-2">Egreso</label>
+                    </div>
+                    <div class="w-100"></div>
+                    <input type="submit" name="" id="" value="Calcular" class="btn btn-primary">
+                </form>
+                <div class="form-group">
+                    <label for="buscar" class="mr-2 mb-2">Buscar por ID</label>
+                    <input type="number" required name="buscar" placeholder="Ingrese el ID" class="form-control mr-2 mb-2" id="buscar">
+                    <button class="btn btn-primary" id="btnBuscar">Buscar</button>
+                </div>
             </div>
-            <div class="w-100"></div>
-            <input type="submit" name="" id="" value="Calcular" class="btn btn-primary">
-        </form>
-        <div class="form-group">
-            <label for="buscar" class="mr-2 mb-2">Buscar por ID</label>
-            <input type="number" required name="buscar" placeholder="Ingrese el ID" class="form-control mr-2 mb-2" id="buscar">
-            <button class="btn btn-primary" id="btnBuscar">Buscar</button>
+            <div class="col-md-8 ml-0 mr-0">
+                <table class="table table-striped table-bordered table-responsive-sm">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th style="max-width: 100px;">Valor</th>
+                            <th>Tipo</th>
+                        </tr>
+                    </thead>
+                    <tbody id="myData">
+    
+                    </tbody>
+                </table>
+            </div>
         </div>
-        <table class="table table-striped table-bordered table-responsive-sm">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Valor</th>
-                    <th>Tipo</th>
-                </tr>
-            </thead>
-            <tbody id="myData">
-
-            </tbody>
-        </table>
     </div>
-
 </body>
 </html>
