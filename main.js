@@ -3,6 +3,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const formulario = document.querySelector("form");
     const tabla = document.querySelector("#myData");
     const API_URL = "https://6509e17df6553137159c2ff5.mockapi.io/tabla";
+    const btnBuscar = document.getElementById("btnBuscar");
+    const inputBuscar = document.getElementById("buscar");
     let editar = false;//se inicializa esta varuiable en false para pasar del mtodo PUT o POST  segun se el valor del boton enviar 
 
     //funcion para renderizar los datos de la tabla 
@@ -88,38 +90,44 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-   //vuelvo a llamar la funcion renderData para cuando el input de buscar este vacio me muestre todos los valores de la tabla  
-   async function obtenerDatos() {
-    await renderData(); 
-}
+    //vuelvo a llamar la funcion renderData para cuando el input de buscar este vacio me muestre todos los valores de la tabla  
+    async function obtenerDatos() {
+        await renderData(); 
+    }
     //funcion que me traera solo un valor buscasdo por id
     async function buscarId(id) {
         const res = await fetch(`${API_URL}/${id}`);//metodo GET por id
         return res.ok ? await res.json() : null;//devuelve los datos si la respues es exitosa
     }
+
     //esta funcion me pinta los valores cuando solo deseo mostrar los datos de un solo id
     async function hacerBusqueda() {
+    try {
         const id = inputBuscar.value.trim();//obtiene los valores del input buscar y elimina los espacios en blanco
 
-        !id ? obtenerDatos() : null;//verifica que el input buscar este vacio y llama a la funcion obtenerDatos
-
+        if (!id) {//verifica que el input buscar este vacio y llama a la funcion obtenerDatos
+            obtenerDatos();
+            return;
+        }
         const resultado = await buscarId(id);//llama la funcion buscarId para buscar un registro por id
 
-        !resultado ? alert("ID no encontrado") : null;//verifica si la funcion buscarId encontro un registro
-
-        tabla.innerHTML = `
-            <tr>
-                <td>${resultado.id}</td>
-                <td>${resultado.valor}</td>
-                <td>${resultado.caja}</td>
-                <td><button class="btn btn-primary editar" data-id="${resultado.id}">Editar</button></td>
-                <td><button class="btn btn-danger eliminar" data-id="${resultado.id}">Eliminar</button></td>
-            </tr>
-        `;
+        if (!resultado) { //verifica si la funcion buscarId encontro un registro
+            alert("ID no encontrado");
+            return;
+        }
+            tabla.innerHTML = `
+               <tr>
+                    <td>${resultado.id}</td>
+                    <td>${resultado.valor}</td>
+                    <td>${resultado.caja}</td>
+                    <td><button class="btn btn-primary editar" data-id="${resultado.id}">Editar</button></td>
+                    <td><button class="btn btn-danger eliminar" data-id="${resultado.id}">Eliminar</button></td>
+             </tr>
+            `;
+        } catch (error) {
+            console.error(error);
+        }
     }
-    //evento para el boton de busqueda
-    const btnBuscar = document.getElementById("btnBuscar");
-    const inputBuscar = document.getElementById("buscar");
 
     btnBuscar.addEventListener("click", hacerBusqueda);//al hacer click en el boton capturado se llama a la funcion hacerBusqueda
     //verifica que el campo de entrada este vacio , si lo esta llama a la funcion
