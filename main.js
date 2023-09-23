@@ -88,24 +88,10 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    //basicamente lo que hace esta funcion es lo siguiente:
-    //despues de que se alla hecho la peticion de buscar por id y el input buscar este vacio vuelve a pintar automaticamente todos los valores 
-    async function obtenerDatos() {
-        const res = await fetch(`${API_URL}`);
-        const datos = await res.json();
-        tabla.innerHTML = ""; // Limpiar la tabla
-        datos.forEach((item) => {
-            tabla.innerHTML += `
-                <tr>
-                    <td>${item.id}</td>
-                    <td>${item.valor}</td>
-                    <td>${item.caja}</td>
-                    <td><button class="btn btn-primary editar" data-id="${item.id}">Editar</button></td>
-                    <td><button class="btn btn-danger eliminar" data-id="${item.id}">Eliminar</button></td>
-                </tr>
-            `;
-        });
-    }
+   //vuelvo a llamar la funcion renderData para cuando el input de buscar este vacio me muestre todos los valores de la tabla  
+   async function obtenerDatos() {
+    await renderData(); 
+}
     //funcion que me traera solo un valor buscasdo por id
     async function buscarId(id) {
         const res = await fetch(`${API_URL}/${id}`);//metodo GET por id
