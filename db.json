@@ -1,0 +1,24 @@
+{
+  "tabla": [
+    {
+      "valor": "22222222",
+      "caja": "ingreso",
+      "id": 1
+    },
+    {
+      "valor": "1111",
+      "caja": "ingreso",
+      "id": 2
+    },
+    {
+      "valor": "22222",
+      "caja": "ingreso",
+      "id": 3
+    },
+    {
+      "valor": "22222",
+      "caja": "ingreso",
+      "id": 4
+    }
+  ]
+}

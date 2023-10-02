@@ -1,0 +1,23 @@
+{
+  "name": "prueba-api",
+  "version": "1.0.0",
+  "description": "este proyecto es una aplicacion crud ( crear , leer , actualizar , eliminar )",
+  "main": "main.js",
+  "scripts": {
+    "start": "json-server --watch db.json --port 3000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leidert11/prueba-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/leidert11/prueba-api/issues"
+  },
+  "homepage": "https://github.com/leidert11/prueba-api#readme",
+  "devDependencies": {
+    "json-server": "0.17.4"
+  }
+}
